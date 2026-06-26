@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>胡志明市七天旅遊學習故事</title>
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Arial,"Microsoft JhengHei",sans-serif;
+    background:#f1f5f9;
+    color:#1f2937;
+}
+section{display:none;min-height:100vh;padding:35px 18px}
+section.active{display:block}
+.cover{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+    url("https://upload.wikimedia.org/wikipedia/commons/0/00/Ho_Chi_Minh_City_skyline.jpg") center/cover no-repeat;
+    color:white;
+}
+.cover-card{
+    background:rgba(255,255,255,.92);
+    color:#111827;
+    max-width:760px;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+.cover h1{font-size:38px;margin:0 0 15px}
+.info{
+    background:#e0f2fe;
+    padding:15px;
+    border-radius:12px;
+    margin:20px 0;
+    line-height:1.8;
+}
+.page{max-width:980px;margin:auto}
+.card{
+    background:white;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
+}
+h2{color:#0b6efd;font-size:30px}
+.place-img{
+    width:100%;
+    max-height:430px;
+    object-fit:cover;
+    border-radius:15px;
+    margin:15px 0;
+}
+.question{
+    background:#fff7ed;
+    border-left:6px solid #fb923c;
+    padding:18px;
+    margin-top:18px;
+    border-radius:10px;
+}
+.option{
+    display:block;
+    width:100%;
+    text-align:left;
+    padding:12px;
+    margin:8px 0;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    background:white;
+    cursor:pointer;
+    font-size:16px;
+}
+.option:hover{background:#e0f2fe}
+.option.correct{background:#dcfce7;border-color:#22c55e}
+.option.wrong{background:#fee2e2;border-color:#ef4444}
+button.next,button.start,button.restart{
+    padding:13px 25px;
+    border:none;
+    background:#0b6efd;
+    color:white;
+    border-radius:12px;
+    font-size:17px;
+    cursor:pointer;
+    margin-top:20px;
+}
+button.next:disabled{background:#94a3b8;cursor:not-allowed}
+.score{
+    position:fixed;
+    top:12px;
+    right:12px;
+    background:#111827;
+    color:white;
+    padding:10px 16px;
+    border-radius:20px;
+    z-index:9;
+}
+.end{
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#dbeafe,#fef3c7);
+}
+.end-card{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    max-width:700px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+</style>
+</head>
+<body>
+
+<div class="score">分數：<span id="score">0</span></div>
+
+<section id="cover" class="cover active">
+<div class="cover-card">
+    <h1>🌆 胡志明市七天旅遊學習故事</h1>
+    <h2>期末學習故事</h2>
+    <div class="info">
+        <p><b>姓名：</b>武紅銀</p>
+        <p><b>學號：</b>11457271</p>
+        <p><b>主題：</b>七天探索胡志明市</p>
+    </div>
+    <p>在這個故事中，你將用七天的時間參觀胡志明市。每一天都有一個景點介紹和一個小問題。答對一題可以得到 10 分。</p>
+    <button class="start" onclick="goTo(1)">開始旅程</button>
+</div>
+</section>
+
+<section id="day1">
+<div class="page card">
+<h2>第一天：濱城市場</h2>
+<img class="place-img" src="https://upload.wikimedia.org/wikipedia/commons/7/79/Ben_Thanh_Market.jpg">
+<p>第一天，我們來到濱城市場。這裡是胡志明市很有名的傳統市場。遊客可以買紀念品、品嚐越南小吃，也可以感受當地人的生活氣氛。</p>
+<div class="question">
+<p><b>問題：</b>濱城市場最有名的是什麼？</p>
+<button class="option" onclick="answer(this,true)">傳統市場和胡志明市的代表景點</button>
+<button class="option" onclick="answer(this,false)">越南最大的機場</button>
+<button class="option" onclick="answer(this,false)">一個海邊景點</button>
+</div>
+<button class="next" disabled onclick="goTo(2)">下一天</button>
+</div>
+</section>
+
+<section id="day2">
+<div class="page card">
+<h2>第二天：統一宮</h2>
+<img class="place-img" src="https://upload.wikimedia.org/wikipedia/commons/0/06/Reunification_Palace.jpg">
+<p>第二天，我們參觀統一宮。這個地方和越南歷史有很深的關係。透過參觀，我們可以了解越南的重要事件與歷史背景。</p>
+<div class="question">
+<p><b>問題：</b>統一宮主要和什麼有關？</p>
+<button class="option" onclick="answer(this,false)">美食文化</button>
+<button class="option" onclick="answer(this,true)">歷史</button>
+<button class="option" onclick="answer(this,false)">體育比賽</button>
+</div>
+<button class="next" disabled onclick="goTo(3)">下一天</button>
+</div>
+</section>
+
+<section id="day3">
+<div class="page card">
+<h2>第三天：紅教堂與中央郵局</h2>
+<img class="place-img" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Notre_Dame_Cathedral_Basilica_of_Saigon.jpg">
+<p>第三天，我們來到紅教堂和中央郵局。這兩個地方有美麗的法式建築，也是很多遊客喜歡拍照的景點。</p>
+<div class="question">
+<p><b>問題：</b>紅教堂和中央郵局最有特色的是什麼？</p>
+<button class="option" onclick="answer(this,true)">法式建築</button>
+<button class="option" onclick="answer(this,false)">熱帶雨林</button>
+<button class="option" onclick="answer(this,false)">梯田景觀</button>
+</div>
+<button class="next" disabled onclick="goTo(4)">下一天</button>
+</div>
+</section>
+
+<section id="day4">
+<div class="page card">
+<h2>第四天：阮惠步行街</h2>
+<img class="place-img" src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Nguyen_Hue_Walking_Street.jpg">
+<p>第四天晚上，我們到阮惠步行街散步。這裡很熱鬧，有很多人拍照、喝咖啡、欣賞城市夜景。</p>
+<div class="question">
+<p><b>問題：</b>阮惠步行街最適合做什麼？</p>
+<button class="option" onclick="answer(this,false)">爬山</button>
+<button class="option" onclick="answer(this,true)">散步和看夜景</button>
+<button class="option" onclick="answer(this,false)">潛水</button>
+</div>
+<button class="next" disabled onclick="goTo(5)">下一天</button>
+</div>
+</section>
+
+<section id="day5">
+<div class="page card">
+<h2>第五天：戰爭遺跡博物館</h2>
+<img class="place-img" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/War_Remnants_Museum.jpg">
+<p>第五天，我們參觀戰爭遺跡博物館。這裡介紹越南戰爭的歷史，也讓人思考和平的重要。</p>
+<div class="question">
+<p><b>問題：</b>戰爭遺跡博物館主要介紹什麼？</p>
+<button class="option" onclick="answer(this,true)">歷史和戰爭</button>
+<button class="option" onclick="answer(this,false)">現代時尚</button>
+<button class="option" onclick="answer(this,false)">種樹的方法</button>
+</div>
+<button class="next" disabled onclick="goTo(6)">下一天</button>
+</div>
+</section>
+
+<section id="day6">
+<div class="page card">
+<h2>第六天：Landmark 81</h2>
+<img class="place-img" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Landmark_81.jpg">
+<p>第六天，我們來到 Landmark 81。這是一棟很高、很現代的大樓。遊客可以從高處欣賞胡志明市的城市風景。</p>
+<div class="question">
+<p><b>問題：</b>到 Landmark 81 通常可以做什麼？</p>
+<button class="option" onclick="answer(this,false)">看稻田</button>
+<button class="option" onclick="answer(this,true)">看城市全景</button>
+<button class="option" onclick="answer(this,false)">去海上划船</button>
+</div>
+<button class="next" disabled onclick="goTo(7)">下一天</button>
+</div>
+</section>
+
+<section id="day7">
+<div class="page card">
+<h2>第七天：古芝地道</h2>
+<img class="place-img" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Cu_Chi_Tunnels.jpg">
+<p>第七天，我們來到古芝地道。這裡有很有名的地下坑道，可以讓遊客了解越南人在戰爭時期的生活與堅強精神。</p>
+<div class="question">
+<p><b>問題：</b>古芝地道最有名的是什麼？</p>
+<button class="option" onclick="answer(this,true)">歷史地下坑道</button>
+<button class="option" onclick="answer(this,false)">大型購物中心</button>
+<button class="option" onclick="answer(this,false)">足球場</button>
+</div>
+<button class="next" disabled onclick="finish()">看結果</button>
+</div>
+</section>
+
+<section id="end" class="end">
+<div class="end-card">
+<h1>🎉 旅程完成！</h1>
+<p>你的總分是：<b><span id="finalScore">0</span>/70</b></p>
+<p id="comment"></p>
+<p>謝謝你一起完成胡志明市七天旅遊學習故事。</p>
+<button class="restart" onclick="location.reload()">再玩一次</button>
+</div>
+</section>
+
+<script>
+let score = 0;
+let answered = {};
+
+function goTo(n){
+    document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+    document.getElementById("day"+n).classList.add("active");
+    window.scrollTo(0,0);
+}
+
+function answer(btn, correct){
+    let section = btn.closest("section").id;
+    if(answered[section]) return;
+    answered[section] = true;
+
+    let buttons = btn.parentElement.querySelectorAll(".option");
+    buttons.forEach(b=>b.disabled=true);
+
+    if(correct){
+        btn.classList.add("correct");
+        score += 10;
+        document.getElementById("score").innerText = score;
+    }else{
+        btn.classList.add("wrong");
+        buttons.forEach(b=>{
+            if(b.getAttribute("onclick").includes("true")){
+                b.classList.add("correct");
+            }
+        });
+    }
+
+    btn.closest(".card").querySelector(".next").disabled = false;
+}
+
+function finish(){
+    document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+    document.getElementById("end").classList.add("active");
+    document.getElementById("finalScore").innerText = score;
+
+    let comment = "";
+    if(score >= 60){
+        comment = "太棒了！你很了解胡志明市。";
+    }else if(score >= 40){
+        comment = "不錯！你完成了這趟旅程。";
+    }else{
+        comment = "沒關係！你可以再玩一次，重新認識胡志明市。";
+    }
+    document.getElementById("comment").innerText = comment;
+}
+</script>
+
+</body>
+</html>
